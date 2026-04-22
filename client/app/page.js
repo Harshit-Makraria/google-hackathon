@@ -348,10 +348,15 @@ export default function Home() {
                           <span className="underline decoration-dotted cursor-help">Disparate Impact</span>
                         </Tip>
                       </p>
-                      <p className="text-2xl font-black text-slate-800">{metrics.disparateImpact}</p>
+                      <p className="text-2xl font-black text-slate-800">
+                        {metrics.disparateImpact === 0 ? '0.000' : metrics.disparateImpact.toFixed ? metrics.disparateImpact.toFixed(3) : metrics.disparateImpact}
+                      </p>
+                      {metrics.disparateImpact === 0 && (
+                        <p className="text-[10px] text-red-500 font-semibold mt-0.5">0% positive outcomes in disadvantaged group</p>
+                      )}
                       <div className="mt-2 h-1.5 bg-slate-100 rounded-full">
                         <div className={`h-full rounded-full transition-all ${metrics.disparateImpact >= 0.8 ? 'bg-green-400' : metrics.disparateImpact >= 0.6 ? 'bg-amber-400' : 'bg-red-400'}`}
-                          style={{ width: `${Math.min(metrics.disparateImpact * 100, 100)}%` }}/>
+                          style={{ width: `${Math.max(Math.min(metrics.disparateImpact * 100, 100), metrics.disparateImpact > 0 ? 4 : 0)}%` }}/>
                       </div>
                     </div>
 
@@ -362,7 +367,7 @@ export default function Home() {
                           <span className="underline decoration-dotted cursor-help">Parity Diff</span>
                         </Tip>
                       </p>
-                      <p className="text-2xl font-black text-slate-800">{metrics.statisticalParityDiff}</p>
+                      <p className="text-2xl font-black text-slate-800">{Number(metrics.statisticalParityDiff).toFixed(3)}</p>
                       <p className="text-[10px] text-slate-400 mt-1">threshold ≤ 0.1</p>
                     </div>
 

@@ -1,6 +1,6 @@
 const Papa = require('papaparse');
 
-const POSITIVE_VALUES = new Set(['1', 'true', 'yes', 'True', 'Yes', 'TRUE', 'YES', '1.0']);
+const POSITIVE_VALUES = new Set(['1', '1.0', 'true', 'True', 'TRUE', 'yes', 'Yes', 'YES', 'y', 'Y', 'hired', 'approved', 'accepted', 'pass', 'passed', 'positive', 'grant', 'granted']);
 
 function analyzeCSV(buffer, protectedAttribute, outcomeColumn) {
   const csv = buffer.toString('utf-8');
