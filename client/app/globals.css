@@ -3,11 +3,18 @@
 @tailwind utilities;
 
 body {
-  background-color: #0f0f0f;
-  color: #ffffff;
+  background-color: #f8fafc;
+  color: #1e293b;
 }
 
 .drag-active {
   border-color: #6366f1 !important;
-  background-color: rgba(99, 102, 241, 0.05);
+  background-color: rgba(99, 102, 241, 0.04) !important;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  body { background: white; }
+  .shadow-sm { box-shadow: none !important; }
 }
