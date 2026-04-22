@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(firebase --version)",
+      "Bash(firebase emulators:start --only functions)",
+      "Bash(curl -s http://127.0.0.1:5001/biaslens-app/us-central1/api/health)",
+      "Bash(curl -s -X POST http://127.0.0.1:5001/biaslens-app/us-central1/api/analyze -F 'file=@C:/Users/harsh/Claude Cowork/google_hktn/sample_data.csv' -F protectedAttribute=gender -F outcomeColumn=hired)",
+      "Bash(cp \"C:/Users/harsh/Claude Cowork/google_hktn/sample_data.csv\" /tmp/sample_data.csv)",
+      "Bash(curl -s -X POST http://127.0.0.1:5001/biaslens-app/us-central1/api/analyze -F 'file=@/tmp/sample_data.csv;type=text/csv' -F protectedAttribute=gender -F outcomeColumn=hired)",
+      "Bash(node -e ' *)",
+      "Bash(node \"C:/Users/harsh/Claude Cowork/google_hktn/test_api.js\")",
+      "Bash(taskkill /F /IM \"node.exe\" /T)",
+      "Bash(taskkill //F //IM java.exe //T)",
+      "Bash(taskkill //F //IM node.exe //T)",
+      "Bash(firebase projects:list)",
+      "Bash(npm run *)",
+      "Bash(firebase deploy *)",
+      "Bash(node \"C:/Users/harsh/Claude Cowork/google_hktn/server/index.js\")",
+      "Bash(vercel --version)",
+      "Bash(vercel login *)"
+    ]
+  }
+}
