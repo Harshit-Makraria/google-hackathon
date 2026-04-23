@@ -18,7 +18,9 @@
       "Bash(firebase deploy *)",
       "Bash(node \"C:/Users/harsh/Claude Cowork/google_hktn/server/index.js\")",
       "Bash(vercel --version)",
-      "Bash(vercel login *)"
+      "Bash(vercel login *)",
+      "Bash(node -e \"console.log\\(require\\('jspdf/package.json'\\).version, require\\('jspdf-autotable/package.json'\\).version\\)\")",
+      "Bash(npx next *)"
     ]
   }
 }

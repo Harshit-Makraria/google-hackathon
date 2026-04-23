@@ -1,4 +1,5 @@
 const Papa = require('papaparse');
+const { sampleCandidates } = require('./counterfactual');
 
 const POSITIVE_VALUES = new Set(['1', '1.0', 'true', 'True', 'TRUE', 'yes', 'Yes', 'YES', 'y', 'Y', 'hired', 'approved', 'accepted', 'pass', 'passed', 'positive', 'grant', 'granted']);
 
@@ -42,6 +43,8 @@ function analyzeCSV(buffer, protectedAttribute, outcomeColumn) {
   else if (disparateImpact >= 0.6) riskLevel = 'MEDIUM';
   else riskLevel = 'HIGH';
 
+  const counterfactualCandidates = sampleCandidates(data, protectedAttribute, outcomeColumn, 12);
+
   return {
     totalRows: data.length,
     protectedAttribute,
@@ -55,6 +58,8 @@ function analyzeCSV(buffer, protectedAttribute, outcomeColumn) {
     privilegedGroup: sorted[0][0],
     unprivilegedGroup: sorted[sorted.length - 1][0],
     riskLevel,
+    counterfactualCandidates,
+    rawRows: data.slice(0, 500), // cap for serialization safety
   };
 }
 

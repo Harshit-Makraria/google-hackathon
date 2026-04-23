@@ -6,6 +6,9 @@ import WhatIfSimulator from '../components/WhatIfSimulator';
 import GlossaryTab from '../components/GlossaryTab';
 import HistoryTab from '../components/HistoryTab';
 import SampleDataTab from '../components/SampleDataTab';
+import SftAuditorTab from '../components/SftAuditorTab';
+import CounterfactualPanel from '../components/CounterfactualPanel';
+import ComplianceExport from '../components/ComplianceExport';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? '/api';
 
@@ -158,7 +161,7 @@ export default function Home() {
         <header className="bg-white border-b border-slate-200 px-6 py-3 flex items-center justify-between shrink-0 no-print shadow-sm">
           <div className="flex items-center gap-3">
             <div>
-              <h1 className="font-bold text-slate-800 capitalize text-sm">{activeTab === 'sample' ? 'Sample Dataset' : activeTab}</h1>
+              <h1 className="font-bold text-slate-800 capitalize text-sm">{activeTab === 'sample' ? 'Sample Dataset' : activeTab === 'sft' ? 'SFT Auditor' : activeTab}</h1>
               <p className="text-xs text-slate-400">AI-powered algorithmic fairness platform</p>
             </div>
           </div>
@@ -178,6 +181,7 @@ export default function Home() {
           {activeTab === 'history'  && <HistoryTab history={history} onRestore={r => { setResults(r); setActiveTab('dashboard'); setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: 'smooth' }), 200); }} />}
           {activeTab === 'glossary' && <GlossaryTab />}
           {activeTab === 'sample'   && <SampleDataTab onUseDataset={loadSample} />}
+          {activeTab === 'sft'      && <SftAuditorTab />}
 
           {activeTab === 'dashboard' && (
             <div className="max-w-4xl space-y-5">
@@ -445,6 +449,12 @@ export default function Home() {
 
                   {/* What-If */}
                   <WhatIfSimulator metrics={metrics} />
+
+                  {/* Counterfactual "What-If" Engine */}
+                  <CounterfactualPanel metrics={metrics} />
+
+                  {/* Compliance PDF export */}
+                  <ComplianceExport results={results} />
 
                   {/* AI Report */}
                   {report && (
